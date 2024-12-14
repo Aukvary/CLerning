@@ -26,14 +26,14 @@ void vector_iterator_start(void *self);
 void *vector_iterator_next(void *self);
 bool vector_iterator_end(void *self);
 
-#define vector_push(self, new_element) {\
-    if (self->__capacity__ <= self->__member_count__) {\
-        if (!vector_extend(self))     \
-            exit( -1 );                 \
-    }\
-    ((typeof(new_element) *)             \
-    (self->__start__))[self->__member_count__] = new_element;\
-    self->__member_count__++;\
+#define vector_push(self, new_element) {                        \
+    if (self->__capacity__ <= self->__member_count__) {         \
+        if (!vector_extend(self))                               \
+            exit( -1 );                                         \
+    }                                                           \
+    ((typeof(new_element) *)                                    \
+    (self->__start__))[self->__member_count__] = new_element;   \
+    self->__member_count__++;                                   \
 }
 
 #define vector_remove(self, element)({                                          \
